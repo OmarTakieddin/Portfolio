@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Personal Portfolio Website | Omar Takieddin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-gray-300">
+    <header class="py-4 border-b border-gray-800 bg-gray-900/50 backdrop-blur-md sticky top-0 z-50">
+      <div class="container mx-auto px-4 flex items-center justify-between">
+        <a href="index.html" class="text-xl font-bold text-white hover:text-blue-400 transition-colors">
+          &larr; Back to Portfolio
+        </a>
+        <h1 class="text-white text-lg font-semibold">
+          Personal Portfolio Website
+        </h1>
+      </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16 max-w-4xl">
+      <section>
+        <h2 class="text-4xl font-bold text-white mb-6 text-center">
+          Personal Portfolio Website
+        </h2>
+        <p class="text-gray-400 text-center mb-10">HTML | CSS</p>
+
+        <!-- Carousel -->
+        <div x-data="{
+            activeSlide: 1,
+            totalSlides: 3,
+            init() {
+              setInterval(() => {
+                this.activeSlide = this.activeSlide === this.totalSlides ? 1 : this.activeSlide + 1;
+              }, 3000);
+            }
+          }"
+          x-init="init"
+          class="relative w-full overflow-hidden rounded-lg shadow-lg mb-10">
+
+          <!-- Slides -->
+          <div class="flex transition-transform duration-500"
+               :style="`transform: translateX(-${(activeSlide - 1) * 100}%)`">
+            <img src="/Photos/Portfolio Project.png" alt="Portfolio Slide 1" class="w-full h-72 object-cover flex-shrink-0">
+            <img src="/Photos/Portfolio 2.png" alt="Portfolio Slide 2" class="w-full h-72 object-cover flex-shrink-0">
+            <img src="/Photos/Portfolio 3.png" alt="Portfolio Slide 3" class="w-full h-72 object-cover flex-shrink-0">
+          </div>
+
+          <!-- Dots -->
+          <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            <template x-for="i in totalSlides" :key="i">
+              <button
+                @click="activeSlide = i"
+                :class="activeSlide === i ? 'bg-white' : 'bg-gray-500'"
+                class="w-3 h-3 rounded-full">
+              </button>
+            </template>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="text-gray-300 text-lg leading-relaxed space-y-6">
+          <p>
+            This project involved designing and developing a personal portfolio website using HTML and CSS to showcase my skills, projects, and professional background in a responsive and visually appealing format.
+          </p>
+          <p>
+            The website structure was hand-coded with semantic HTML elements for accessibility and maintainability, while modern CSS techniques were used for layout, styling, and responsiveness across devices. After completion, I shared the site with friends to gather feedback and also created custom portfolio sites for them based on their needs.
+          </p>
+          <p>
+            Tools & Technologies used: HTML5, CSS3, responsive design principles, GitHub for version control and hosting it on a free site.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="py-6 bg-gray-900 border-t border-gray-800 text-center text-gray-400">
+      &copy; 2025 <a href="https://www.linkedin.com/in/omartakieddin/" class="clickable" target="_blank">Omar Takieddin</a>. All rights reserved.
+    </footer>
+          <style>
+        .clickable {
+          color: #007Bff;
+          text-decoration: underline;
+          transition: color 0.2s ease;
+        }
+        .clickable:hover {
+          color: #0056b3;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      </style>
+  </body>
+</html>
